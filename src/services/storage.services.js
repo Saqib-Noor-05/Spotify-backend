@@ -1,0 +1,19 @@
+const { ImageKit } = require('@imagekit/nodejs')
+
+const ImagekitClient = new ImageKit({
+
+    privateKey: process.env.IMAGEKIT_PRIVATE_KEY,
+})
+
+async function uploadFile(file) {
+    const result = await ImagekitClient.files.upload({
+        file,
+        fileName: "music" + Date.now(),
+        folder: "Spotify-music"
+        // the above folder is created in imagekit media library not in my pc 🤣🤣
+    })
+
+    return result;
+}
+
+module.exports = { uploadFile }
